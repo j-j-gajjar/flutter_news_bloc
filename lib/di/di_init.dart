@@ -1,9 +1,11 @@
-import 'package:flutter_news_bloc/navigation/router.dart';
+import 'package:flutter_news_bloc/di/di_init.config.dart';
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
-GetIt initDI(GetIt getIt) => _initGetIt(getIt);
+@injectableInit
+GetIt initDI(GetIt getIt) => getIt.init();
 
-GetIt _initGetIt(GetIt getIt) {
-  getIt.registerSingleton<AppRouter>(AppRouter());
-  return getIt;
-}
+// GetIt _initGetIt(GetIt getIt) {
+//   getIt.registerSingleton<AppRouter>(AppRouter());
+//   return getIt;
+// }
