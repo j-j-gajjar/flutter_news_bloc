@@ -1,10 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news_bloc/domain/model/news_res.dart';
 import 'package:flutter_news_bloc/utils/extention/widget_extension.dart';
 
 class NewsCardWidget extends StatelessWidget {
   const NewsCardWidget({
     super.key,
+    required this.article,
   });
+  final Article article;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +24,9 @@ class NewsCardWidget extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
               color: Colors.red,
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg',
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  article.urlToImage ?? '',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -30,8 +34,8 @@ class NewsCardWidget extends StatelessWidget {
             ),
             height: 240,
           ),
-          const Text(
-            "retrofitretrofitretrofitretrofitretrofit",
+          Text(
+            article.title ?? '',
             textAlign: TextAlign.left,
             maxLines: 2,
           ).padding()

@@ -11,8 +11,7 @@ class NewsResponse with _$NewsResponse {
     required List<Article> articles,
   }) = _NewsResponse;
 
-  factory NewsResponse.fromJson(Map<String, dynamic> json) =>
-      _$NewsResponseFromJson(json);
+  factory NewsResponse.fromJson(Map<String, dynamic> json) => _$NewsResponseFromJson(json);
 }
 
 @freezed
@@ -27,15 +26,14 @@ class Article with _$Article {
     DateTime? publishedAt,
     String? content,
   }) = _Article;
-  factory Article.fromJson(Map<String, dynamic> json) =>
-      _$ArticleFromJson(json);
+  factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
 }
 
 @freezed
 class Source with _$Source {
   const factory Source({
-    required String id,
-    required String name,
+    required String? id,
+    required String? name,
   }) = _Source;
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 }

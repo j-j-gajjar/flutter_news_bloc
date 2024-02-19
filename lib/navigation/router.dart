@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 part 'router.gr.dart';
 
-@injectable
+@Injectable(order: -1)
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
   @override

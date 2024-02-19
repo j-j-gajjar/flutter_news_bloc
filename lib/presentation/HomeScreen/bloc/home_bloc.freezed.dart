@@ -16,48 +16,53 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  bool get isLoading => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) initial,
-    required TResult Function(List<Article> articles, bool isLoading) allNews,
+    required TResult Function(bool isLoading) initialState,
+    required TResult Function(
+            List<Article> articles, bool isLoading, bool isLast)
+        allNewsState,
+    required TResult Function(String errorMessage) errorState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? initial,
-    TResult? Function(List<Article> articles, bool isLoading)? allNews,
+    TResult? Function(bool isLoading)? initialState,
+    TResult? Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult? Function(String errorMessage)? errorState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? initial,
-    TResult Function(List<Article> articles, bool isLoading)? allNews,
+    TResult Function(bool isLoading)? initialState,
+    TResult Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult Function(String errorMessage)? errorState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_AllNews value) allNews,
+    required TResult Function(_Initial value) initialState,
+    required TResult Function(_AllNews value) allNewsState,
+    required TResult Function(_ErrorState value) errorState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_AllNews value)? allNews,
+    TResult? Function(_Initial value)? initialState,
+    TResult? Function(_AllNews value)? allNewsState,
+    TResult? Function(_ErrorState value)? errorState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_AllNews value)? allNews,
+    TResult Function(_Initial value)? initialState,
+    TResult Function(_AllNews value)? allNewsState,
+    TResult Function(_ErrorState value)? errorState,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -65,8 +70,6 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
-  @useResult
-  $Res call({bool isLoading});
 }
 
 /// @nodoc
@@ -78,28 +81,13 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({bool isLoading});
 }
@@ -136,7 +124,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'HomeState.initial(isLoading: $isLoading)';
+    return 'HomeState.initialState(isLoading: $isLoading)';
   }
 
   @override
@@ -160,30 +148,37 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) initial,
-    required TResult Function(List<Article> articles, bool isLoading) allNews,
+    required TResult Function(bool isLoading) initialState,
+    required TResult Function(
+            List<Article> articles, bool isLoading, bool isLast)
+        allNewsState,
+    required TResult Function(String errorMessage) errorState,
   }) {
-    return initial(isLoading);
+    return initialState(isLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? initial,
-    TResult? Function(List<Article> articles, bool isLoading)? allNews,
+    TResult? Function(bool isLoading)? initialState,
+    TResult? Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult? Function(String errorMessage)? errorState,
   }) {
-    return initial?.call(isLoading);
+    return initialState?.call(isLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? initial,
-    TResult Function(List<Article> articles, bool isLoading)? allNews,
+    TResult Function(bool isLoading)? initialState,
+    TResult Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult Function(String errorMessage)? errorState,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(isLoading);
+    if (initialState != null) {
+      return initialState(isLoading);
     }
     return orElse();
   }
@@ -191,30 +186,33 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_AllNews value) allNews,
+    required TResult Function(_Initial value) initialState,
+    required TResult Function(_AllNews value) allNewsState,
+    required TResult Function(_ErrorState value) errorState,
   }) {
-    return initial(this);
+    return initialState(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_AllNews value)? allNews,
+    TResult? Function(_Initial value)? initialState,
+    TResult? Function(_AllNews value)? allNewsState,
+    TResult? Function(_ErrorState value)? errorState,
   }) {
-    return initial?.call(this);
+    return initialState?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_AllNews value)? allNews,
+    TResult Function(_Initial value)? initialState,
+    TResult Function(_AllNews value)? allNewsState,
+    TResult Function(_ErrorState value)? errorState,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (initialState != null) {
+      return initialState(this);
     }
     return orElse();
   }
@@ -223,23 +221,19 @@ class _$InitialImpl implements _Initial {
 abstract class _Initial implements HomeState {
   const factory _Initial({required final bool isLoading}) = _$InitialImpl;
 
-  @override
   bool get isLoading;
-  @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AllNewsImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
+abstract class _$$AllNewsImplCopyWith<$Res> {
   factory _$$AllNewsImplCopyWith(
           _$AllNewsImpl value, $Res Function(_$AllNewsImpl) then) =
       __$$AllNewsImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({List<Article> articles, bool isLoading});
+  $Res call({List<Article> articles, bool isLoading, bool isLast});
 }
 
 /// @nodoc
@@ -255,6 +249,7 @@ class __$$AllNewsImplCopyWithImpl<$Res>
   $Res call({
     Object? articles = null,
     Object? isLoading = null,
+    Object? isLast = null,
   }) {
     return _then(_$AllNewsImpl(
       articles: null == articles
@@ -265,6 +260,10 @@ class __$$AllNewsImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLast: null == isLast
+          ? _value.isLast
+          : isLast // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -273,7 +272,9 @@ class __$$AllNewsImplCopyWithImpl<$Res>
 
 class _$AllNewsImpl implements _AllNews {
   const _$AllNewsImpl(
-      {required final List<Article> articles, required this.isLoading})
+      {required final List<Article> articles,
+      required this.isLoading,
+      this.isLast = false})
       : _articles = articles;
 
   final List<Article> _articles;
@@ -286,10 +287,13 @@ class _$AllNewsImpl implements _AllNews {
 
   @override
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool isLast;
 
   @override
   String toString() {
-    return 'HomeState.allNews(articles: $articles, isLoading: $isLoading)';
+    return 'HomeState.allNewsState(articles: $articles, isLoading: $isLoading, isLast: $isLast)';
   }
 
   @override
@@ -299,12 +303,13 @@ class _$AllNewsImpl implements _AllNews {
             other is _$AllNewsImpl &&
             const DeepCollectionEquality().equals(other._articles, _articles) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.isLast, isLast) || other.isLast == isLast));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_articles), isLoading);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_articles), isLoading, isLast);
 
   @JsonKey(ignore: true)
   @override
@@ -315,30 +320,37 @@ class _$AllNewsImpl implements _AllNews {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading) initial,
-    required TResult Function(List<Article> articles, bool isLoading) allNews,
+    required TResult Function(bool isLoading) initialState,
+    required TResult Function(
+            List<Article> articles, bool isLoading, bool isLast)
+        allNewsState,
+    required TResult Function(String errorMessage) errorState,
   }) {
-    return allNews(articles, isLoading);
+    return allNewsState(articles, isLoading, isLast);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading)? initial,
-    TResult? Function(List<Article> articles, bool isLoading)? allNews,
+    TResult? Function(bool isLoading)? initialState,
+    TResult? Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult? Function(String errorMessage)? errorState,
   }) {
-    return allNews?.call(articles, isLoading);
+    return allNewsState?.call(articles, isLoading, isLast);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading)? initial,
-    TResult Function(List<Article> articles, bool isLoading)? allNews,
+    TResult Function(bool isLoading)? initialState,
+    TResult Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult Function(String errorMessage)? errorState,
     required TResult orElse(),
   }) {
-    if (allNews != null) {
-      return allNews(articles, isLoading);
+    if (allNewsState != null) {
+      return allNewsState(articles, isLoading, isLast);
     }
     return orElse();
   }
@@ -346,30 +358,33 @@ class _$AllNewsImpl implements _AllNews {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_AllNews value) allNews,
+    required TResult Function(_Initial value) initialState,
+    required TResult Function(_AllNews value) allNewsState,
+    required TResult Function(_ErrorState value) errorState,
   }) {
-    return allNews(this);
+    return allNewsState(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_AllNews value)? allNews,
+    TResult? Function(_Initial value)? initialState,
+    TResult? Function(_AllNews value)? allNewsState,
+    TResult? Function(_ErrorState value)? errorState,
   }) {
-    return allNews?.call(this);
+    return allNewsState?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_AllNews value)? allNews,
+    TResult Function(_Initial value)? initialState,
+    TResult Function(_AllNews value)? allNewsState,
+    TResult Function(_ErrorState value)? errorState,
     required TResult orElse(),
   }) {
-    if (allNews != null) {
-      return allNews(this);
+    if (allNewsState != null) {
+      return allNewsState(this);
     }
     return orElse();
   }
@@ -378,14 +393,159 @@ class _$AllNewsImpl implements _AllNews {
 abstract class _AllNews implements HomeState {
   const factory _AllNews(
       {required final List<Article> articles,
-      required final bool isLoading}) = _$AllNewsImpl;
+      required final bool isLoading,
+      final bool isLast}) = _$AllNewsImpl;
 
   List<Article> get articles;
-  @override
   bool get isLoading;
-  @override
+  bool get isLast;
   @JsonKey(ignore: true)
   _$$AllNewsImplCopyWith<_$AllNewsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ErrorStateImplCopyWith<$Res> {
+  factory _$$ErrorStateImplCopyWith(
+          _$ErrorStateImpl value, $Res Function(_$ErrorStateImpl) then) =
+      __$$ErrorStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String errorMessage});
+}
+
+/// @nodoc
+class __$$ErrorStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$ErrorStateImpl>
+    implements _$$ErrorStateImplCopyWith<$Res> {
+  __$$ErrorStateImplCopyWithImpl(
+      _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errorMessage = null,
+  }) {
+    return _then(_$ErrorStateImpl(
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorStateImpl implements _ErrorState {
+  const _$ErrorStateImpl({required this.errorMessage});
+
+  @override
+  final String errorMessage;
+
+  @override
+  String toString() {
+    return 'HomeState.errorState(errorMessage: $errorMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorStateImpl &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, errorMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
+      __$$ErrorStateImplCopyWithImpl<_$ErrorStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoading) initialState,
+    required TResult Function(
+            List<Article> articles, bool isLoading, bool isLast)
+        allNewsState,
+    required TResult Function(String errorMessage) errorState,
+  }) {
+    return errorState(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoading)? initialState,
+    TResult? Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult? Function(String errorMessage)? errorState,
+  }) {
+    return errorState?.call(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoading)? initialState,
+    TResult Function(List<Article> articles, bool isLoading, bool isLast)?
+        allNewsState,
+    TResult Function(String errorMessage)? errorState,
+    required TResult orElse(),
+  }) {
+    if (errorState != null) {
+      return errorState(errorMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initialState,
+    required TResult Function(_AllNews value) allNewsState,
+    required TResult Function(_ErrorState value) errorState,
+  }) {
+    return errorState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initialState,
+    TResult? Function(_AllNews value)? allNewsState,
+    TResult? Function(_ErrorState value)? errorState,
+  }) {
+    return errorState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initialState,
+    TResult Function(_AllNews value)? allNewsState,
+    TResult Function(_ErrorState value)? errorState,
+    required TResult orElse(),
+  }) {
+    if (errorState != null) {
+      return errorState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ErrorState implements HomeState {
+  const factory _ErrorState({required final String errorMessage}) =
+      _$ErrorStateImpl;
+
+  String get errorMessage;
+  @JsonKey(ignore: true)
+  _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -394,19 +554,19 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
-    required TResult Function() paginate,
+    required TResult Function(BuildContext context) paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
-    TResult? Function()? paginate,
+    TResult? Function(BuildContext context)? paginate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
-    TResult Function()? paginate,
+    TResult Function(BuildContext context)? paginate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -487,7 +647,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
-    required TResult Function() paginate,
+    required TResult Function(BuildContext context) paginate,
   }) {
     return fetchAllNews();
   }
@@ -496,7 +656,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
-    TResult? Function()? paginate,
+    TResult? Function(BuildContext context)? paginate,
   }) {
     return fetchAllNews?.call();
   }
@@ -505,7 +665,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
-    TResult Function()? paginate,
+    TResult Function(BuildContext context)? paginate,
     required TResult orElse(),
   }) {
     if (fetchAllNews != null) {
@@ -555,6 +715,8 @@ abstract class _$$PaginateImplCopyWith<$Res> {
   factory _$$PaginateImplCopyWith(
           _$PaginateImpl value, $Res Function(_$PaginateImpl) then) =
       __$$PaginateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -564,54 +726,78 @@ class __$$PaginateImplCopyWithImpl<$Res>
   __$$PaginateImplCopyWithImpl(
       _$PaginateImpl _value, $Res Function(_$PaginateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$PaginateImpl(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$PaginateImpl implements Paginate {
-  const _$PaginateImpl();
+  const _$PaginateImpl(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'HomeEvent.paginate()';
+    return 'HomeEvent.paginate(context: $context)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PaginateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PaginateImpl &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PaginateImplCopyWith<_$PaginateImpl> get copyWith =>
+      __$$PaginateImplCopyWithImpl<_$PaginateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
-    required TResult Function() paginate,
+    required TResult Function(BuildContext context) paginate,
   }) {
-    return paginate();
+    return paginate(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
-    TResult? Function()? paginate,
+    TResult? Function(BuildContext context)? paginate,
   }) {
-    return paginate?.call();
+    return paginate?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
-    TResult Function()? paginate,
+    TResult Function(BuildContext context)? paginate,
     required TResult orElse(),
   }) {
     if (paginate != null) {
-      return paginate();
+      return paginate(context);
     }
     return orElse();
   }
@@ -649,5 +835,10 @@ class _$PaginateImpl implements Paginate {
 }
 
 abstract class Paginate implements HomeEvent {
-  const factory Paginate() = _$PaginateImpl;
+  const factory Paginate(final BuildContext context) = _$PaginateImpl;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$PaginateImplCopyWith<_$PaginateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

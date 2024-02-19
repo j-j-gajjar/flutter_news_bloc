@@ -12,7 +12,9 @@ class _ApiProvider implements ApiProvider {
   _ApiProvider(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'https://newsapi.org/v2';
+  }
 
   final Dio _dio;
 
@@ -33,7 +35,7 @@ class _ApiProvider implements ApiProvider {
     )
             .compose(
               _dio.options,
-              '/getNews',
+              '/top-headlines',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -51,8 +51,8 @@ Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
     };
 
 _$SourceImpl _$$SourceImplFromJson(Map<String, dynamic> json) => _$SourceImpl(
-      id: json['id'] as String,
-      name: json['name'] as String,
+      id: json['id'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$SourceImplToJson(_$SourceImpl instance) =>

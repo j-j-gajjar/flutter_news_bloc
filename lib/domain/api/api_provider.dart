@@ -6,11 +6,11 @@ import 'package:retrofit/retrofit.dart';
 part 'api_provider.g.dart';
 
 @injectable
-@RestApi()
+@RestApi(baseUrl: "https://newsapi.org/v2")
 abstract class ApiProvider {
   @factoryMethod
   factory ApiProvider(Dio dio, {String baseUrl}) = _ApiProvider;
 
-  @GET("/getNews")
+  @GET("/top-headlines")
   Future<NewsResponse> getNews(@Queries() Map<String, dynamic> queries);
 }
