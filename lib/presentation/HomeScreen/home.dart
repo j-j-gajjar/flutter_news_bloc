@@ -83,10 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _scrollListener() {
-    print("______________________________________________________________________________________");
-    print("_scrollController.position.pixels ${_scrollController.position.pixels}");
-    print("MediaQuery.of(context).padding.top ${MediaQuery.of(context).padding.top}");
-    print("_scrollController.position.maxScrollExtent ${_scrollController.position.maxScrollExtent}");
     if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
       diContainer<HomeBloc>().add(Paginate(context));
     }
