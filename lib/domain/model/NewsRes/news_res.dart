@@ -25,6 +25,7 @@ class Article with _$Article {
     String? urlToImage,
     DateTime? publishedAt,
     String? content,
+    @Default(false) bool isLiked,
   }) = _Article;
   factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
 }

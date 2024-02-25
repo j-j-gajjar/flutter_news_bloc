@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_news_bloc/domain/model/news_res.dart';
+import 'package:flutter_news_bloc/domain/model/model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

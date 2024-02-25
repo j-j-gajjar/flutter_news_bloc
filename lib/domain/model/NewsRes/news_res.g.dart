@@ -36,6 +36,7 @@ _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['publishedAt'] as String),
       content: json['content'] as String?,
+      isLiked: json['isLiked'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
@@ -48,6 +49,7 @@ Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
       'urlToImage': instance.urlToImage,
       'publishedAt': instance.publishedAt?.toIso8601String(),
       'content': instance.content,
+      'isLiked': instance.isLiked,
     };
 
 _$SourceImpl _$$SourceImplFromJson(Map<String, dynamic> json) => _$SourceImpl(

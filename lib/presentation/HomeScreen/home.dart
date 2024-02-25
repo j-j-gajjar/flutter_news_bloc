@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_bloc/di/di_container.dart';
+import 'package:flutter_news_bloc/navigation/router.dart';
 import 'package:flutter_news_bloc/presentation/HomeScreen/bloc/home_bloc.dart';
 import 'package:flutter_news_bloc/presentation/presenration.dart';
 
@@ -34,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("News With Bloc"),
       ),
+      drawer: const Drawer(
+        child: Column(children: [Text("data")]),
+      ),
       body: BlocProvider(
         create: (context) => diContainer<HomeBloc>()..add(const HomeEvent.fetchAllNews()),
         child: BlocConsumer<HomeBloc, HomeState>(
@@ -51,7 +55,18 @@ class _HomeScreenState extends State<HomeScreen> {
               allNewsState: (articles, isLoading, isLast) => ListView.builder(
                 controller: _scrollController,
                 itemBuilder: (context, index) => Column(
-                  children: [NewsCardWidget(article: articles[index]), if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading)],
+                  children: [
+                    GestureDetector(
+                      child: NewsCardWidget(article: articles[index]),
+                      onDoubleTap: () {
+                        diContainer<HomeBloc>().add(HomeEvent.like(index));
+                      },
+                      onTap: () {
+                        diContainer<AppRouter>().push(NewsRoute(article: articles[index]));
+                      },
+                    ),
+                    if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading),
+                  ],
                 ),
                 padding: const EdgeInsets.all(8),
                 itemCount: articles.length,

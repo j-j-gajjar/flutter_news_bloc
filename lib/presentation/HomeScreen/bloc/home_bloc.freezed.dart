@@ -555,18 +555,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
     required TResult Function(BuildContext context) paginate,
+    required TResult Function(int index) like,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
     TResult? Function(BuildContext context)? paginate,
+    TResult? Function(int index)? like,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
     TResult Function(BuildContext context)? paginate,
+    TResult Function(int index)? like,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -574,18 +577,21 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
     required TResult Function(Paginate value) paginate,
+    required TResult Function(Like value) like,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
     TResult? Function(Paginate value)? paginate,
+    TResult? Function(Like value)? like,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
     TResult Function(Paginate value)? paginate,
+    TResult Function(Like value)? like,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -648,6 +654,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
     required TResult Function(BuildContext context) paginate,
+    required TResult Function(int index) like,
   }) {
     return fetchAllNews();
   }
@@ -657,6 +664,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
     TResult? Function(BuildContext context)? paginate,
+    TResult? Function(int index)? like,
   }) {
     return fetchAllNews?.call();
   }
@@ -666,6 +674,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
     TResult Function(BuildContext context)? paginate,
+    TResult Function(int index)? like,
     required TResult orElse(),
   }) {
     if (fetchAllNews != null) {
@@ -679,6 +688,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
     required TResult Function(Paginate value) paginate,
+    required TResult Function(Like value) like,
   }) {
     return fetchAllNews(this);
   }
@@ -688,6 +698,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
     TResult? Function(Paginate value)? paginate,
+    TResult? Function(Like value)? like,
   }) {
     return fetchAllNews?.call(this);
   }
@@ -697,6 +708,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
     TResult Function(Paginate value)? paginate,
+    TResult Function(Like value)? like,
     required TResult orElse(),
   }) {
     if (fetchAllNews != null) {
@@ -776,6 +788,7 @@ class _$PaginateImpl implements Paginate {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
     required TResult Function(BuildContext context) paginate,
+    required TResult Function(int index) like,
   }) {
     return paginate(context);
   }
@@ -785,6 +798,7 @@ class _$PaginateImpl implements Paginate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
     TResult? Function(BuildContext context)? paginate,
+    TResult? Function(int index)? like,
   }) {
     return paginate?.call(context);
   }
@@ -794,6 +808,7 @@ class _$PaginateImpl implements Paginate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
     TResult Function(BuildContext context)? paginate,
+    TResult Function(int index)? like,
     required TResult orElse(),
   }) {
     if (paginate != null) {
@@ -807,6 +822,7 @@ class _$PaginateImpl implements Paginate {
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
     required TResult Function(Paginate value) paginate,
+    required TResult Function(Like value) like,
   }) {
     return paginate(this);
   }
@@ -816,6 +832,7 @@ class _$PaginateImpl implements Paginate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
     TResult? Function(Paginate value)? paginate,
+    TResult? Function(Like value)? like,
   }) {
     return paginate?.call(this);
   }
@@ -825,6 +842,7 @@ class _$PaginateImpl implements Paginate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
     TResult Function(Paginate value)? paginate,
+    TResult Function(Like value)? like,
     required TResult orElse(),
   }) {
     if (paginate != null) {
@@ -840,5 +858,143 @@ abstract class Paginate implements HomeEvent {
   BuildContext get context;
   @JsonKey(ignore: true)
   _$$PaginateImplCopyWith<_$PaginateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LikeImplCopyWith<$Res> {
+  factory _$$LikeImplCopyWith(
+          _$LikeImpl value, $Res Function(_$LikeImpl) then) =
+      __$$LikeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$LikeImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$LikeImpl>
+    implements _$$LikeImplCopyWith<$Res> {
+  __$$LikeImplCopyWithImpl(_$LikeImpl _value, $Res Function(_$LikeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$LikeImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LikeImpl implements Like {
+  const _$LikeImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'HomeEvent.like(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LikeImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LikeImplCopyWith<_$LikeImpl> get copyWith =>
+      __$$LikeImplCopyWithImpl<_$LikeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllNews,
+    required TResult Function(BuildContext context) paginate,
+    required TResult Function(int index) like,
+  }) {
+    return like(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllNews,
+    TResult? Function(BuildContext context)? paginate,
+    TResult? Function(int index)? like,
+  }) {
+    return like?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllNews,
+    TResult Function(BuildContext context)? paginate,
+    TResult Function(int index)? like,
+    required TResult orElse(),
+  }) {
+    if (like != null) {
+      return like(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(Paginate value) paginate,
+    required TResult Function(Like value) like,
+  }) {
+    return like(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(Paginate value)? paginate,
+    TResult? Function(Like value)? like,
+  }) {
+    return like?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(Paginate value)? paginate,
+    TResult Function(Like value)? like,
+    required TResult orElse(),
+  }) {
+    if (like != null) {
+      return like(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Like implements HomeEvent {
+  const factory Like(final int index) = _$LikeImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$LikeImplCopyWith<_$LikeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

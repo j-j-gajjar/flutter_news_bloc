@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_bloc/domain/api/api_provider.dart';
-import 'package:flutter_news_bloc/domain/model/news_request.dart';
-import 'package:flutter_news_bloc/domain/model/news_res.dart';
+import 'package:flutter_news_bloc/domain/model/model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._apiProvider) : super(const HomeState.initialState(isLoading: true)) {
     on<FetchAllNews>(_fetchAllNews);
     on<Paginate>(_pagination);
+    on<Like>(_onLike);
   }
 
   NewsRequest _newsRequest = const NewsRequest(
@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final ApiProvider _apiProvider;
 
-  _fetchAllNews(event, emit) async {
+  void _fetchAllNews(event, emit) async {
     try {
       NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
       // _pageNum = _pageNum + 1;
@@ -39,7 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  _pagination(event, emit) async {
+  void _pagination(event, emit) async {
     if ((state as _AllNews).isLoading) return;
     emit((state as _AllNews).copyWith(isLoading: true));
     try {
@@ -58,5 +58,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } catch (e) {
       emit(HomeState.errorState(errorMessage: e.toString()));
     }
+  }
+
+  void _onLike(Like event, Emitter<HomeState> emit) {
+    List<Article> articles = (state as _AllNews).articles.asMap().entries.map((i) {
+      if (event.index == i.key) {
+        return i.value.copyWith(isLiked: !i.value.isLiked);
+      } else {
+        return i.value;
+      }
+    }).toList();
+    emit((state as _AllNews).copyWith(articles: articles, isLast: false));
   }
 }

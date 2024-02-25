@@ -210,6 +210,7 @@ mixin _$Article {
   String? get urlToImage => throw _privateConstructorUsedError;
   DateTime? get publishedAt => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  bool get isLiked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -229,7 +230,8 @@ abstract class $ArticleCopyWith<$Res> {
       String? url,
       String? urlToImage,
       DateTime? publishedAt,
-      String? content});
+      String? content,
+      bool isLiked});
 
   $SourceCopyWith<$Res>? get source;
 }
@@ -255,6 +257,7 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
     Object? urlToImage = freezed,
     Object? publishedAt = freezed,
     Object? content = freezed,
+    Object? isLiked = null,
   }) {
     return _then(_value.copyWith(
       source: freezed == source
@@ -289,6 +292,10 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -320,7 +327,8 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       String? url,
       String? urlToImage,
       DateTime? publishedAt,
-      String? content});
+      String? content,
+      bool isLiked});
 
   @override
   $SourceCopyWith<$Res>? get source;
@@ -345,6 +353,7 @@ class __$$ArticleImplCopyWithImpl<$Res>
     Object? urlToImage = freezed,
     Object? publishedAt = freezed,
     Object? content = freezed,
+    Object? isLiked = null,
   }) {
     return _then(_$ArticleImpl(
       source: freezed == source
@@ -379,6 +388,10 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -394,7 +407,8 @@ class _$ArticleImpl implements _Article {
       this.url,
       this.urlToImage,
       this.publishedAt,
-      this.content});
+      this.content,
+      this.isLiked = false});
 
   factory _$ArticleImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArticleImplFromJson(json);
@@ -415,10 +429,13 @@ class _$ArticleImpl implements _Article {
   final DateTime? publishedAt;
   @override
   final String? content;
+  @override
+  @JsonKey()
+  final bool isLiked;
 
   @override
   String toString() {
-    return 'Article(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
+    return 'Article(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content, isLiked: $isLiked)';
   }
 
   @override
@@ -436,13 +453,14 @@ class _$ArticleImpl implements _Article {
                 other.urlToImage == urlToImage) &&
             (identical(other.publishedAt, publishedAt) ||
                 other.publishedAt == publishedAt) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, source, author, title,
-      description, url, urlToImage, publishedAt, content);
+      description, url, urlToImage, publishedAt, content, isLiked);
 
   @JsonKey(ignore: true)
   @override
@@ -467,7 +485,8 @@ abstract class _Article implements Article {
       final String? url,
       final String? urlToImage,
       final DateTime? publishedAt,
-      final String? content}) = _$ArticleImpl;
+      final String? content,
+      final bool isLiked}) = _$ArticleImpl;
 
   factory _Article.fromJson(Map<String, dynamic> json) = _$ArticleImpl.fromJson;
 
@@ -487,6 +506,8 @@ abstract class _Article implements Article {
   DateTime? get publishedAt;
   @override
   String? get content;
+  @override
+  bool get isLiked;
   @override
   @JsonKey(ignore: true)
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>

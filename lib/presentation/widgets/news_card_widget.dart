@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news_bloc/domain/model/news_res.dart';
+import 'package:flutter_news_bloc/domain/model/model.dart';
 import 'package:flutter_news_bloc/utils/extention/widget_extension.dart';
 
 class NewsCardWidget extends StatelessWidget {
@@ -20,19 +20,16 @@ class NewsCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                  article.urlToImage ?? '',
-                ),
-                fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Center(
+              child: CachedNetworkImage(
+                imageUrl: article.urlToImage ?? '',
+                errorWidget: (_, __, ___) => const SizedBox(),
+                fadeInCurve: Curves.easeInCirc,
+                alignment: Alignment.center,
               ),
-              borderRadius: BorderRadius.circular(16),
             ),
-            height: 240,
           ),
           Text(
             article.title ?? '',
