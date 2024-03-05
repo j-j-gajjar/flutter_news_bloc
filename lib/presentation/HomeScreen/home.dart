@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_bloc/di/di_container.dart';
-import 'package:flutter_news_bloc/navigation/router.dart';
-import 'package:flutter_news_bloc/presentation/HomeScreen/bloc/home_bloc.dart';
 import 'package:flutter_news_bloc/presentation/presenration.dart';
 
 @RoutePage()
@@ -35,64 +33,54 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("News With Bloc"),
       ),
-      drawer: const Drawer(
-        child: Column(children: [Text("data")]),
-      ),
-      body: BlocProvider(
-        create: (context) => diContainer<HomeBloc>()..add(const HomeEvent.fetchAllNews()),
-        child: BlocConsumer<HomeBloc, HomeState>(
-          listener: (context, state) {
-            state.whenOrNull(
-              allNewsState: (articles, isLoading, isLast) {
-                if (isLast) {
-                  showSnackBar(context, "You caught up with all news!");
-                }
-              },
-            );
-          },
-          builder: (context, state) {
-            return state.when(
-              allNewsState: (articles, isLoading, isLast) => ListView.builder(
-                controller: _scrollController,
-                itemBuilder: (context, index) => Column(
+      drawer: const SideDrawer(),
+      body: BlocConsumer<HomeBloc, HomeState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            allNewsState: (articles, isLoading, isLast) {
+              if (isLast) {
+                showSnackBar(context, "You caught up with all news!");
+              }
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.when(
+            allNewsState: (articles, isLoading, isLast) => ListView.builder(
+              controller: _scrollController,
+              itemBuilder: (context, index) => Column(
+                children: [
+                  NewsCardWidget(
+                    article: articles[index],
+                    index: index,
+                  ),
+                  const Divider(),
+                  if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading),
+                ],
+              ),
+              itemCount: articles.length,
+            ),
+            initialState: (isLoading) => const CustomLoader(isLoading: true),
+            errorState: (errorMessage) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      child: NewsCardWidget(article: articles[index]),
-                      onDoubleTap: () {
-                        diContainer<HomeBloc>().add(HomeEvent.like(index));
+                    Text(errorMessage),
+                    MaterialButton(
+                      onPressed: () {
+                        diContainer<HomeBloc>().add(const HomeEvent.fetchAllNews());
                       },
-                      onTap: () {
-                        diContainer<AppRouter>().push(NewsRoute(article: articles[index]));
-                      },
-                    ),
-                    if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading),
+                      color: Colors.amber,
+                      child: const Text("Refresh"),
+                    )
                   ],
                 ),
-                padding: const EdgeInsets.all(8),
-                itemCount: articles.length,
               ),
-              initialState: (isLoading) => const CustomLoader(isLoading: true),
-              errorState: (errorMessage) => Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(errorMessage),
-                      MaterialButton(
-                        onPressed: () {
-                          diContainer<HomeBloc>().add(const HomeEvent.fetchAllNews());
-                        },
-                        color: Colors.amber,
-                        child: const Text("Refresh"),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

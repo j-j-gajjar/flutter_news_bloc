@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_news_bloc/domain/api/api_provider.dart';
 import 'package:flutter_news_bloc/navigation/router.dart';
-import 'package:flutter_news_bloc/presentation/HomeScreen/bloc/home_bloc.dart';
+import 'package:flutter_news_bloc/presentation/presenration.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,7 +13,8 @@ void initDI(GetIt getIt) {
     ..registerSingleton(Dio())
     ..registerSingleton(AppRouter())
     ..registerSingleton(ApiProvider(getIt<Dio>()))
-    ..registerSingleton(HomeBloc(getIt<ApiProvider>()));
+    ..registerSingleton(HomeBloc(getIt<ApiProvider>()))
+    ..registerSingleton(DrawerBloc());
 }
 
 // GetIt _initGetIt(GetIt getIt) {
