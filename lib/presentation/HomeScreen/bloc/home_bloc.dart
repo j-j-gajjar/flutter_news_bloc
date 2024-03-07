@@ -15,6 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchAllNews>(_fetchAllNews);
     on<Paginate>(_pagination);
     on<Like>(_onLike);
+    on<FilterAllNews>(_filterNews);
   }
 
   NewsRequest _newsRequest = const NewsRequest(
@@ -28,8 +29,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void _fetchAllNews(event, emit) async {
     try {
       NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
-      // _pageNum = _pageNum + 1;
       _newsRequest = _newsRequest.copyWith(page: _newsRequest.page + 1);
+      await customDelayed();
       debugPrint(newsResponse.articles.length.toString());
       if (newsResponse.articles.isNotEmpty) {
         emit(HomeState.allNewsState(articles: newsResponse.articles, isLoading: false));
@@ -69,5 +70,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     }).toList();
     emit((state as _AllNews).copyWith(articles: articles, isLast: false));
+  }
+
+  _filterNews(FilterAllNews event, Emitter<HomeState> emit) async {
+    if ((state as _AllNews).isLoading) return;
+    emit(const HomeState.initialState(isLoading: true));
+    try {
+      _newsRequest = _newsRequest.copyWith(page: 1, category: event.category, country: event.country, sources: event.sources);
+      NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
+      await customDelayed();
+      _newsRequest = _newsRequest.copyWith(page: _newsRequest.page + 1);
+      debugPrint(newsResponse.articles.length.toString());
+      if (newsResponse.articles.isNotEmpty) {
+        emit(HomeState.allNewsState(articles: newsResponse.articles, isLoading: false));
+      }
+    } catch (e) {
+      emit(HomeState.errorState(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> customDelayed() async {
+    await Future.delayed(const Duration(seconds: 2));
   }
 }

@@ -554,6 +554,8 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
+    required TResult Function(String category, String country, String sources)
+        filterAllNews,
     required TResult Function(BuildContext context) paginate,
     required TResult Function(int index) like,
   }) =>
@@ -561,6 +563,8 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
+    TResult? Function(String category, String country, String sources)?
+        filterAllNews,
     TResult? Function(BuildContext context)? paginate,
     TResult? Function(int index)? like,
   }) =>
@@ -568,6 +572,8 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
+    TResult Function(String category, String country, String sources)?
+        filterAllNews,
     TResult Function(BuildContext context)? paginate,
     TResult Function(int index)? like,
     required TResult orElse(),
@@ -576,6 +582,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(FilterAllNews value) filterAllNews,
     required TResult Function(Paginate value) paginate,
     required TResult Function(Like value) like,
   }) =>
@@ -583,6 +590,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(FilterAllNews value)? filterAllNews,
     TResult? Function(Paginate value)? paginate,
     TResult? Function(Like value)? like,
   }) =>
@@ -590,6 +598,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(FilterAllNews value)? filterAllNews,
     TResult Function(Paginate value)? paginate,
     TResult Function(Like value)? like,
     required TResult orElse(),
@@ -653,6 +662,8 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
+    required TResult Function(String category, String country, String sources)
+        filterAllNews,
     required TResult Function(BuildContext context) paginate,
     required TResult Function(int index) like,
   }) {
@@ -663,6 +674,8 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
+    TResult? Function(String category, String country, String sources)?
+        filterAllNews,
     TResult? Function(BuildContext context)? paginate,
     TResult? Function(int index)? like,
   }) {
@@ -673,6 +686,8 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
+    TResult Function(String category, String country, String sources)?
+        filterAllNews,
     TResult Function(BuildContext context)? paginate,
     TResult Function(int index)? like,
     required TResult orElse(),
@@ -687,6 +702,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(FilterAllNews value) filterAllNews,
     required TResult Function(Paginate value) paginate,
     required TResult Function(Like value) like,
   }) {
@@ -697,6 +713,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(FilterAllNews value)? filterAllNews,
     TResult? Function(Paginate value)? paginate,
     TResult? Function(Like value)? like,
   }) {
@@ -707,6 +724,7 @@ class _$FetchAllNewsImpl implements FetchAllNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(FilterAllNews value)? filterAllNews,
     TResult Function(Paginate value)? paginate,
     TResult Function(Like value)? like,
     required TResult orElse(),
@@ -720,6 +738,180 @@ class _$FetchAllNewsImpl implements FetchAllNews {
 
 abstract class FetchAllNews implements HomeEvent {
   const factory FetchAllNews() = _$FetchAllNewsImpl;
+}
+
+/// @nodoc
+abstract class _$$FilterAllNewsImplCopyWith<$Res> {
+  factory _$$FilterAllNewsImplCopyWith(
+          _$FilterAllNewsImpl value, $Res Function(_$FilterAllNewsImpl) then) =
+      __$$FilterAllNewsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String category, String country, String sources});
+}
+
+/// @nodoc
+class __$$FilterAllNewsImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$FilterAllNewsImpl>
+    implements _$$FilterAllNewsImplCopyWith<$Res> {
+  __$$FilterAllNewsImplCopyWithImpl(
+      _$FilterAllNewsImpl _value, $Res Function(_$FilterAllNewsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? country = null,
+    Object? sources = null,
+  }) {
+    return _then(_$FilterAllNewsImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterAllNewsImpl implements FilterAllNews {
+  const _$FilterAllNewsImpl(
+      {this.category = "", this.country = "", this.sources = ""});
+
+  @override
+  @JsonKey()
+  final String category;
+  @override
+  @JsonKey()
+  final String country;
+  @override
+  @JsonKey()
+  final String sources;
+
+  @override
+  String toString() {
+    return 'HomeEvent.filterAllNews(category: $category, country: $country, sources: $sources)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterAllNewsImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.sources, sources) || other.sources == sources));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category, country, sources);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterAllNewsImplCopyWith<_$FilterAllNewsImpl> get copyWith =>
+      __$$FilterAllNewsImplCopyWithImpl<_$FilterAllNewsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllNews,
+    required TResult Function(String category, String country, String sources)
+        filterAllNews,
+    required TResult Function(BuildContext context) paginate,
+    required TResult Function(int index) like,
+  }) {
+    return filterAllNews(category, country, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllNews,
+    TResult? Function(String category, String country, String sources)?
+        filterAllNews,
+    TResult? Function(BuildContext context)? paginate,
+    TResult? Function(int index)? like,
+  }) {
+    return filterAllNews?.call(category, country, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllNews,
+    TResult Function(String category, String country, String sources)?
+        filterAllNews,
+    TResult Function(BuildContext context)? paginate,
+    TResult Function(int index)? like,
+    required TResult orElse(),
+  }) {
+    if (filterAllNews != null) {
+      return filterAllNews(category, country, sources);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(FilterAllNews value) filterAllNews,
+    required TResult Function(Paginate value) paginate,
+    required TResult Function(Like value) like,
+  }) {
+    return filterAllNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(FilterAllNews value)? filterAllNews,
+    TResult? Function(Paginate value)? paginate,
+    TResult? Function(Like value)? like,
+  }) {
+    return filterAllNews?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(FilterAllNews value)? filterAllNews,
+    TResult Function(Paginate value)? paginate,
+    TResult Function(Like value)? like,
+    required TResult orElse(),
+  }) {
+    if (filterAllNews != null) {
+      return filterAllNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilterAllNews implements HomeEvent {
+  const factory FilterAllNews(
+      {final String category,
+      final String country,
+      final String sources}) = _$FilterAllNewsImpl;
+
+  String get category;
+  String get country;
+  String get sources;
+  @JsonKey(ignore: true)
+  _$$FilterAllNewsImplCopyWith<_$FilterAllNewsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -787,6 +979,8 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
+    required TResult Function(String category, String country, String sources)
+        filterAllNews,
     required TResult Function(BuildContext context) paginate,
     required TResult Function(int index) like,
   }) {
@@ -797,6 +991,8 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
+    TResult? Function(String category, String country, String sources)?
+        filterAllNews,
     TResult? Function(BuildContext context)? paginate,
     TResult? Function(int index)? like,
   }) {
@@ -807,6 +1003,8 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
+    TResult Function(String category, String country, String sources)?
+        filterAllNews,
     TResult Function(BuildContext context)? paginate,
     TResult Function(int index)? like,
     required TResult orElse(),
@@ -821,6 +1019,7 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(FilterAllNews value) filterAllNews,
     required TResult Function(Paginate value) paginate,
     required TResult Function(Like value) like,
   }) {
@@ -831,6 +1030,7 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(FilterAllNews value)? filterAllNews,
     TResult? Function(Paginate value)? paginate,
     TResult? Function(Like value)? like,
   }) {
@@ -841,6 +1041,7 @@ class _$PaginateImpl implements Paginate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(FilterAllNews value)? filterAllNews,
     TResult Function(Paginate value)? paginate,
     TResult Function(Like value)? like,
     required TResult orElse(),
@@ -925,6 +1126,8 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchAllNews,
+    required TResult Function(String category, String country, String sources)
+        filterAllNews,
     required TResult Function(BuildContext context) paginate,
     required TResult Function(int index) like,
   }) {
@@ -935,6 +1138,8 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchAllNews,
+    TResult? Function(String category, String country, String sources)?
+        filterAllNews,
     TResult? Function(BuildContext context)? paginate,
     TResult? Function(int index)? like,
   }) {
@@ -945,6 +1150,8 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchAllNews,
+    TResult Function(String category, String country, String sources)?
+        filterAllNews,
     TResult Function(BuildContext context)? paginate,
     TResult Function(int index)? like,
     required TResult orElse(),
@@ -959,6 +1166,7 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllNews value) fetchAllNews,
+    required TResult Function(FilterAllNews value) filterAllNews,
     required TResult Function(Paginate value) paginate,
     required TResult Function(Like value) like,
   }) {
@@ -969,6 +1177,7 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchAllNews value)? fetchAllNews,
+    TResult? Function(FilterAllNews value)? filterAllNews,
     TResult? Function(Paginate value)? paginate,
     TResult? Function(Like value)? like,
   }) {
@@ -979,6 +1188,7 @@ class _$LikeImpl implements Like {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllNews value)? fetchAllNews,
+    TResult Function(FilterAllNews value)? filterAllNews,
     TResult Function(Paginate value)? paginate,
     TResult Function(Like value)? like,
     required TResult orElse(),

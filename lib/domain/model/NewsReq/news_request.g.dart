@@ -15,6 +15,8 @@ _$NewsRequestImpl _$$NewsRequestImplFromJson(Map<String, dynamic> json) =>
       sortBy: json['sortBy'] as String? ?? "",
       q: json['q'] as String? ?? "",
       domains: json['domains'] as String? ?? "",
+      category: json['category'] as String? ?? "",
+      sources: json['sources'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$NewsRequestImplToJson(_$NewsRequestImpl instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$NewsRequestImplToJson(_$NewsRequestImpl instance) =>
       'sortBy': instance.sortBy,
       'q': instance.q,
       'domains': instance.domains,
+      'category': instance.category,
+      'sources': instance.sources,
     };

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_news_bloc/di/di_container.dart';
 import 'package:flutter_news_bloc/domain/model/model.dart';
+import 'package:flutter_news_bloc/presentation/presenration.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
@@ -16,6 +18,7 @@ part 'drawer_bloc.freezed.dart';
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
   DrawerBloc() : super(const _Initial()) {
     on<Started>(_startedEvent);
+    on<FilterNews>(_filterNews);
   }
 
   FutureOr<void> _startedEvent(Started event, Emitter<DrawerState> emit) async {
@@ -26,5 +29,9 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     data = List<SideDrawerModel>.from(dataJson.map((x) => SideDrawerModel.fromJson(x)));
 
     emit(_Loaded(sideDrawer: data));
+  }
+
+  _filterNews(FilterNews event, Emitter<DrawerState> emit) {
+    diContainer<HomeBloc>().add(HomeEvent.filterAllNews(category: event.category, country: event.country, sources: event.sources));
   }
 }

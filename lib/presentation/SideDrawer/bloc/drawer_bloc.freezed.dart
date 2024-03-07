@@ -19,32 +19,41 @@ mixin _$DrawerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String category, String country, String sources)
+        filterNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String category, String country, String sources)?
+        filterNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String category, String country, String sources)?
+        filterNews,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(FilterNews value) filterNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
+    TResult? Function(FilterNews value)? filterNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(FilterNews value)? filterNews,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +116,8 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(String category, String country, String sources)
+        filterNews,
   }) {
     return started();
   }
@@ -115,6 +126,8 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(String category, String country, String sources)?
+        filterNews,
   }) {
     return started?.call();
   }
@@ -123,6 +136,8 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(String category, String country, String sources)?
+        filterNews,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -135,6 +150,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(FilterNews value) filterNews,
   }) {
     return started(this);
   }
@@ -143,6 +159,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
+    TResult? Function(FilterNews value)? filterNews,
   }) {
     return started?.call(this);
   }
@@ -151,6 +168,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(FilterNews value)? filterNews,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -162,6 +180,168 @@ class _$StartedImpl implements Started {
 
 abstract class Started implements DrawerEvent {
   const factory Started() = _$StartedImpl;
+}
+
+/// @nodoc
+abstract class _$$FilterNewsImplCopyWith<$Res> {
+  factory _$$FilterNewsImplCopyWith(
+          _$FilterNewsImpl value, $Res Function(_$FilterNewsImpl) then) =
+      __$$FilterNewsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String category, String country, String sources});
+}
+
+/// @nodoc
+class __$$FilterNewsImplCopyWithImpl<$Res>
+    extends _$DrawerEventCopyWithImpl<$Res, _$FilterNewsImpl>
+    implements _$$FilterNewsImplCopyWith<$Res> {
+  __$$FilterNewsImplCopyWithImpl(
+      _$FilterNewsImpl _value, $Res Function(_$FilterNewsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? country = null,
+    Object? sources = null,
+  }) {
+    return _then(_$FilterNewsImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterNewsImpl implements FilterNews {
+  const _$FilterNewsImpl(
+      {this.category = "", this.country = "", this.sources = ""});
+
+  @override
+  @JsonKey()
+  final String category;
+  @override
+  @JsonKey()
+  final String country;
+  @override
+  @JsonKey()
+  final String sources;
+
+  @override
+  String toString() {
+    return 'DrawerEvent.filterNews(category: $category, country: $country, sources: $sources)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterNewsImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.sources, sources) || other.sources == sources));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category, country, sources);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterNewsImplCopyWith<_$FilterNewsImpl> get copyWith =>
+      __$$FilterNewsImplCopyWithImpl<_$FilterNewsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String category, String country, String sources)
+        filterNews,
+  }) {
+    return filterNews(category, country, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String category, String country, String sources)?
+        filterNews,
+  }) {
+    return filterNews?.call(category, country, sources);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String category, String country, String sources)?
+        filterNews,
+    required TResult orElse(),
+  }) {
+    if (filterNews != null) {
+      return filterNews(category, country, sources);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(FilterNews value) filterNews,
+  }) {
+    return filterNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Started value)? started,
+    TResult? Function(FilterNews value)? filterNews,
+  }) {
+    return filterNews?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(FilterNews value)? filterNews,
+    required TResult orElse(),
+  }) {
+    if (filterNews != null) {
+      return filterNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilterNews implements DrawerEvent {
+  const factory FilterNews(
+      {final String category,
+      final String country,
+      final String sources}) = _$FilterNewsImpl;
+
+  String get category;
+  String get country;
+  String get sources;
+  @JsonKey(ignore: true)
+  _$$FilterNewsImplCopyWith<_$FilterNewsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -30,57 +31,59 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("News With Bloc"),
-      ),
-      drawer: const SideDrawer(),
-      body: BlocConsumer<HomeBloc, HomeState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            allNewsState: (articles, isLoading, isLast) {
-              if (isLast) {
-                showSnackBar(context, "You caught up with all news!");
-              }
-            },
-          );
-        },
-        builder: (context, state) {
-          return state.when(
-            allNewsState: (articles, isLoading, isLast) => ListView.builder(
-              controller: _scrollController,
-              itemBuilder: (context, index) => Column(
-                children: [
-                  NewsCardWidget(
-                    article: articles[index],
-                    index: index,
-                  ),
-                  const Divider(),
-                  if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading),
-                ],
-              ),
-              itemCount: articles.length,
-            ),
-            initialState: (isLoading) => const CustomLoader(isLoading: true),
-            errorState: (errorMessage) => Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      key: _scaffoldKey,
+      appBar: AppBar(title: const Text("News With Bloc")),
+      drawer: SideDrawer(scaffoldKey: _scaffoldKey),
+      body: BlocProvider(
+        create: (context) => diContainer<HomeBloc>()..add(const HomeEvent.fetchAllNews()),
+        child: BlocConsumer<HomeBloc, HomeState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              allNewsState: (articles, isLoading, isLast) {
+                if (isLast) {
+                  showSnackBar(context, "You caught up with all news!");
+                }
+              },
+            );
+          },
+          builder: (context, state) {
+            return state.when(
+              allNewsState: (articles, isLoading, isLast) => ListView.builder(
+                controller: _scrollController,
+                itemBuilder: (context, index) => Column(
                   children: [
-                    Text(errorMessage),
-                    MaterialButton(
-                      onPressed: () {
-                        diContainer<HomeBloc>().add(const HomeEvent.fetchAllNews());
-                      },
-                      color: Colors.amber,
-                      child: const Text("Refresh"),
-                    )
+                    NewsCardWidget(
+                      article: articles[index],
+                      index: index,
+                    ),
+                    const Divider(),
+                    if (index == (articles.length - 1)) CustomLoader(isLoading: isLoading),
                   ],
                 ),
+                itemCount: articles.length,
               ),
-            ),
-          );
-        },
+              initialState: (isLoading) => const CustomLoader(isLoading: true),
+              errorState: (errorMessage) => Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(errorMessage),
+                      MaterialButton(
+                        onPressed: () {
+                          diContainer<HomeBloc>().add(const HomeEvent.fetchAllNews());
+                        },
+                        color: Colors.amber,
+                        child: const Text("Refresh"),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

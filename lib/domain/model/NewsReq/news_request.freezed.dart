@@ -27,6 +27,8 @@ mixin _$NewsRequest {
   String get sortBy => throw _privateConstructorUsedError;
   String get q => throw _privateConstructorUsedError;
   String get domains => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +49,9 @@ abstract class $NewsRequestCopyWith<$Res> {
       String country,
       String sortBy,
       String q,
-      String domains});
+      String domains,
+      String category,
+      String sources});
 }
 
 /// @nodoc
@@ -70,6 +74,8 @@ class _$NewsRequestCopyWithImpl<$Res, $Val extends NewsRequest>
     Object? sortBy = null,
     Object? q = null,
     Object? domains = null,
+    Object? category = null,
+    Object? sources = null,
   }) {
     return _then(_value.copyWith(
       apiKey: null == apiKey
@@ -100,6 +106,14 @@ class _$NewsRequestCopyWithImpl<$Res, $Val extends NewsRequest>
           ? _value.domains
           : domains // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -119,7 +133,9 @@ abstract class _$$NewsRequestImplCopyWith<$Res>
       String country,
       String sortBy,
       String q,
-      String domains});
+      String domains,
+      String category,
+      String sources});
 }
 
 /// @nodoc
@@ -140,6 +156,8 @@ class __$$NewsRequestImplCopyWithImpl<$Res>
     Object? sortBy = null,
     Object? q = null,
     Object? domains = null,
+    Object? category = null,
+    Object? sources = null,
   }) {
     return _then(_$NewsRequestImpl(
       apiKey: null == apiKey
@@ -170,6 +188,14 @@ class __$$NewsRequestImplCopyWithImpl<$Res>
           ? _value.domains
           : domains // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -184,7 +210,9 @@ class _$NewsRequestImpl implements _NewsRequest {
       this.country = "IN",
       this.sortBy = "",
       this.q = "",
-      this.domains = ""});
+      this.domains = "",
+      this.category = "",
+      this.sources = ""});
 
   factory _$NewsRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsRequestImplFromJson(json);
@@ -209,10 +237,16 @@ class _$NewsRequestImpl implements _NewsRequest {
   @override
   @JsonKey()
   final String domains;
+  @override
+  @JsonKey()
+  final String category;
+  @override
+  @JsonKey()
+  final String sources;
 
   @override
   String toString() {
-    return 'NewsRequest(apiKey: $apiKey, pageSize: $pageSize, page: $page, country: $country, sortBy: $sortBy, q: $q, domains: $domains)';
+    return 'NewsRequest(apiKey: $apiKey, pageSize: $pageSize, page: $page, country: $country, sortBy: $sortBy, q: $q, domains: $domains, category: $category, sources: $sources)';
   }
 
   @override
@@ -227,13 +261,16 @@ class _$NewsRequestImpl implements _NewsRequest {
             (identical(other.country, country) || other.country == country) &&
             (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
             (identical(other.q, q) || other.q == q) &&
-            (identical(other.domains, domains) || other.domains == domains));
+            (identical(other.domains, domains) || other.domains == domains) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.sources, sources) || other.sources == sources));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, apiKey, pageSize, page, country, sortBy, q, domains);
+  int get hashCode => Object.hash(runtimeType, apiKey, pageSize, page, country,
+      sortBy, q, domains, category, sources);
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +294,9 @@ abstract class _NewsRequest implements NewsRequest {
       final String country,
       final String sortBy,
       final String q,
-      final String domains}) = _$NewsRequestImpl;
+      final String domains,
+      final String category,
+      final String sources}) = _$NewsRequestImpl;
 
   factory _NewsRequest.fromJson(Map<String, dynamic> json) =
       _$NewsRequestImpl.fromJson;
@@ -276,6 +315,10 @@ abstract class _NewsRequest implements NewsRequest {
   String get q;
   @override
   String get domains;
+  @override
+  String get category;
+  @override
+  String get sources;
   @override
   @JsonKey(ignore: true)
   _$$NewsRequestImplCopyWith<_$NewsRequestImpl> get copyWith =>

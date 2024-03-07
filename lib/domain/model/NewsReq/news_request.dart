@@ -22,6 +22,8 @@ class NewsRequest with _$NewsRequest {
     @Default("") String sortBy,
     @Default("") String q,
     @Default("") String domains,
+    @Default("") String category,
+    @Default("") String sources,
   }) = _NewsRequest;
 
   factory NewsRequest.fromJson(Map<String, dynamic> json) => _$NewsRequestFromJson(json);
