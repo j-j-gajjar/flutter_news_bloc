@@ -30,7 +30,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
       _newsRequest = _newsRequest.copyWith(page: _newsRequest.page + 1);
-      await customDelayed();
       debugPrint(newsResponse.articles.length.toString());
       if (newsResponse.articles.isNotEmpty) {
         emit(HomeState.allNewsState(articles: newsResponse.articles, isLoading: false));
@@ -78,7 +77,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       _newsRequest = _newsRequest.copyWith(page: 1, category: event.category, country: event.country, sources: event.sources);
       NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
-      await customDelayed();
       _newsRequest = _newsRequest.copyWith(page: _newsRequest.page + 1);
       debugPrint(newsResponse.articles.length.toString());
       if (newsResponse.articles.isNotEmpty) {
@@ -87,9 +85,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } catch (e) {
       emit(HomeState.errorState(errorMessage: e.toString()));
     }
-  }
-
-  Future<void> customDelayed() async {
-    await Future.delayed(const Duration(seconds: 2));
   }
 }

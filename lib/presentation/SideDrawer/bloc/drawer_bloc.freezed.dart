@@ -19,41 +19,38 @@ mixin _$DrawerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String category, String country, String sources)
-        filterNews,
+    required TResult Function(String category, String value) filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String category, String country, String sources)?
-        filterNews,
+    TResult? Function(String category, String value)? filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String category, String country, String sources)?
-        filterNews,
+    TResult Function(String category, String value)? filterData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(FilterNews value) filterNews,
+    required TResult Function(FilterData value) filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
-    TResult? Function(FilterNews value)? filterNews,
+    TResult? Function(FilterData value)? filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(FilterNews value)? filterNews,
+    TResult Function(FilterData value)? filterData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,8 +113,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String category, String country, String sources)
-        filterNews,
+    required TResult Function(String category, String value) filterData,
   }) {
     return started();
   }
@@ -126,8 +122,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String category, String country, String sources)?
-        filterNews,
+    TResult? Function(String category, String value)? filterData,
   }) {
     return started?.call();
   }
@@ -136,8 +131,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String category, String country, String sources)?
-        filterNews,
+    TResult Function(String category, String value)? filterData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,7 +144,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(FilterNews value) filterNews,
+    required TResult Function(FilterData value) filterData,
   }) {
     return started(this);
   }
@@ -159,7 +153,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
-    TResult? Function(FilterNews value)? filterNews,
+    TResult? Function(FilterData value)? filterData,
   }) {
     return started?.call(this);
   }
@@ -168,7 +162,7 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(FilterNews value)? filterNews,
+    TResult Function(FilterData value)? filterData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -183,41 +177,36 @@ abstract class Started implements DrawerEvent {
 }
 
 /// @nodoc
-abstract class _$$FilterNewsImplCopyWith<$Res> {
-  factory _$$FilterNewsImplCopyWith(
-          _$FilterNewsImpl value, $Res Function(_$FilterNewsImpl) then) =
-      __$$FilterNewsImplCopyWithImpl<$Res>;
+abstract class _$$FilterDataImplCopyWith<$Res> {
+  factory _$$FilterDataImplCopyWith(
+          _$FilterDataImpl value, $Res Function(_$FilterDataImpl) then) =
+      __$$FilterDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String category, String country, String sources});
+  $Res call({String category, String value});
 }
 
 /// @nodoc
-class __$$FilterNewsImplCopyWithImpl<$Res>
-    extends _$DrawerEventCopyWithImpl<$Res, _$FilterNewsImpl>
-    implements _$$FilterNewsImplCopyWith<$Res> {
-  __$$FilterNewsImplCopyWithImpl(
-      _$FilterNewsImpl _value, $Res Function(_$FilterNewsImpl) _then)
+class __$$FilterDataImplCopyWithImpl<$Res>
+    extends _$DrawerEventCopyWithImpl<$Res, _$FilterDataImpl>
+    implements _$$FilterDataImplCopyWith<$Res> {
+  __$$FilterDataImplCopyWithImpl(
+      _$FilterDataImpl _value, $Res Function(_$FilterDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? category = null,
-    Object? country = null,
-    Object? sources = null,
+    Object? value = null,
   }) {
-    return _then(_$FilterNewsImpl(
-      category: null == category
+    return _then(_$FilterDataImpl(
+      null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      sources: null == sources
-          ? _value.sources
-          : sources // ignore: cast_nullable_to_non_nullable
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -225,75 +214,65 @@ class __$$FilterNewsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FilterNewsImpl implements FilterNews {
-  const _$FilterNewsImpl(
-      {this.category = "", this.country = "", this.sources = ""});
+class _$FilterDataImpl implements FilterData {
+  const _$FilterDataImpl(this.category, this.value);
 
   @override
-  @JsonKey()
   final String category;
   @override
-  @JsonKey()
-  final String country;
-  @override
-  @JsonKey()
-  final String sources;
+  final String value;
 
   @override
   String toString() {
-    return 'DrawerEvent.filterNews(category: $category, country: $country, sources: $sources)';
+    return 'DrawerEvent.filterData(category: $category, value: $value)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterNewsImpl &&
+            other is _$FilterDataImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.sources, sources) || other.sources == sources));
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, country, sources);
+  int get hashCode => Object.hash(runtimeType, category, value);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterNewsImplCopyWith<_$FilterNewsImpl> get copyWith =>
-      __$$FilterNewsImplCopyWithImpl<_$FilterNewsImpl>(this, _$identity);
+  _$$FilterDataImplCopyWith<_$FilterDataImpl> get copyWith =>
+      __$$FilterDataImplCopyWithImpl<_$FilterDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String category, String country, String sources)
-        filterNews,
+    required TResult Function(String category, String value) filterData,
   }) {
-    return filterNews(category, country, sources);
+    return filterData(category, value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String category, String country, String sources)?
-        filterNews,
+    TResult? Function(String category, String value)? filterData,
   }) {
-    return filterNews?.call(category, country, sources);
+    return filterData?.call(category, value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String category, String country, String sources)?
-        filterNews,
+    TResult Function(String category, String value)? filterData,
     required TResult orElse(),
   }) {
-    if (filterNews != null) {
-      return filterNews(category, country, sources);
+    if (filterData != null) {
+      return filterData(category, value);
     }
     return orElse();
   }
@@ -302,45 +281,42 @@ class _$FilterNewsImpl implements FilterNews {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(FilterNews value) filterNews,
+    required TResult Function(FilterData value) filterData,
   }) {
-    return filterNews(this);
+    return filterData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
-    TResult? Function(FilterNews value)? filterNews,
+    TResult? Function(FilterData value)? filterData,
   }) {
-    return filterNews?.call(this);
+    return filterData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(FilterNews value)? filterNews,
+    TResult Function(FilterData value)? filterData,
     required TResult orElse(),
   }) {
-    if (filterNews != null) {
-      return filterNews(this);
+    if (filterData != null) {
+      return filterData(this);
     }
     return orElse();
   }
 }
 
-abstract class FilterNews implements DrawerEvent {
-  const factory FilterNews(
-      {final String category,
-      final String country,
-      final String sources}) = _$FilterNewsImpl;
+abstract class FilterData implements DrawerEvent {
+  const factory FilterData(final String category, final String value) =
+      _$FilterDataImpl;
 
   String get category;
-  String get country;
-  String get sources;
+  String get value;
   @JsonKey(ignore: true)
-  _$$FilterNewsImplCopyWith<_$FilterNewsImpl> get copyWith =>
+  _$$FilterDataImplCopyWith<_$FilterDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -349,19 +325,25 @@ mixin _$DrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<SideDrawerModel> sideDrawer) loaded,
+    required TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult? Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -443,7 +425,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<SideDrawerModel> sideDrawer) loaded,
+    required TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)
+        loaded,
   }) {
     return initial();
   }
@@ -452,7 +436,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult? Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
   }) {
     return initial?.call();
   }
@@ -461,7 +447,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -512,7 +500,11 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SideDrawerModel> sideDrawer});
+  $Res call(
+      {List<SideDrawerModel> sideDrawer,
+      String category,
+      String country,
+      String sources});
 }
 
 /// @nodoc
@@ -527,12 +519,27 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sideDrawer = null,
+    Object? category = null,
+    Object? country = null,
+    Object? sources = null,
   }) {
     return _then(_$LoadedImpl(
       sideDrawer: null == sideDrawer
           ? _value._sideDrawer
           : sideDrawer // ignore: cast_nullable_to_non_nullable
               as List<SideDrawerModel>,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      sources: null == sources
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -540,7 +547,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<SideDrawerModel> sideDrawer})
+  const _$LoadedImpl(
+      {required final List<SideDrawerModel> sideDrawer,
+      this.category = "",
+      this.country = "",
+      this.sources = ""})
       : _sideDrawer = sideDrawer;
 
   final List<SideDrawerModel> _sideDrawer;
@@ -552,8 +563,18 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
+  @JsonKey()
+  final String category;
+  @override
+  @JsonKey()
+  final String country;
+  @override
+  @JsonKey()
+  final String sources;
+
+  @override
   String toString() {
-    return 'DrawerState.loaded(sideDrawer: $sideDrawer)';
+    return 'DrawerState.loaded(sideDrawer: $sideDrawer, category: $category, country: $country, sources: $sources)';
   }
 
   @override
@@ -562,12 +583,20 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._sideDrawer, _sideDrawer));
+                .equals(other._sideDrawer, _sideDrawer) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.sources, sources) || other.sources == sources));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_sideDrawer));
+      runtimeType,
+      const DeepCollectionEquality().hash(_sideDrawer),
+      category,
+      country,
+      sources);
 
   @JsonKey(ignore: true)
   @override
@@ -579,29 +608,35 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<SideDrawerModel> sideDrawer) loaded,
+    required TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)
+        loaded,
   }) {
-    return loaded(sideDrawer);
+    return loaded(sideDrawer, category, country, sources);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult? Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
   }) {
-    return loaded?.call(sideDrawer);
+    return loaded?.call(sideDrawer, category, country, sources);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<SideDrawerModel> sideDrawer)? loaded,
+    TResult Function(List<SideDrawerModel> sideDrawer, String category,
+            String country, String sources)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(sideDrawer);
+      return loaded(sideDrawer, category, country, sources);
     }
     return orElse();
   }
@@ -639,10 +674,16 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements DrawerState {
-  const factory _Loaded({required final List<SideDrawerModel> sideDrawer}) =
-      _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<SideDrawerModel> sideDrawer,
+      final String category,
+      final String country,
+      final String sources}) = _$LoadedImpl;
 
   List<SideDrawerModel> get sideDrawer;
+  String get category;
+  String get country;
+  String get sources;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
