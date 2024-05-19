@@ -11,24 +11,26 @@ class SideDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: BlocProvider(
-        create: (context) => diContainer<DrawerBloc>()..add(const DrawerEvent.started()),
-        child: BlocConsumer<DrawerBloc, DrawerState>(
-          listener: (context, state) => state.whenOrNull(
-            loaded: (_, category, country, sources) {
-              if (category.isNotEmpty || country.isNotEmpty || sources.isNotEmpty) {
-                diContainer<HomeBloc>().add(HomeEvent.filterAllNews(category: category, country: country, sources: sources));
-                if (scaffoldKey.currentState!.isDrawerOpen) {
-                  scaffoldKey.currentState!.openEndDrawer();
-                }
-              }
-              return null;
-            },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => diContainer<DrawerBloc>()..add(const DrawerEvent.started()),
           ),
+          BlocProvider(
+            create: (context) => diContainer<HomeBloc>(),
+          )
+        ],
+        child: BlocBuilder<DrawerBloc, DrawerState>(
           builder: (context, state) {
             return state.when(
               initial: () => const SizedBox(),
               loaded: (List<SideDrawerModel> sideDrawerModel, _, __, ___) => Drawer(
+                // child: BlocListener<HomeBloc, HomeState>(
+                //   listener: (contextx, homeBlocState) => homeBlocState.whenOrNull(
+                //     initialState: (isLoading) => {
+                //       if (isLoading && scaffoldKey.currentState!.isDrawerOpen) {scaffoldKey.currentState!.openEndDrawer()}
+                //     },
+                //   ),
                 child: SafeArea(
                   child: ListView(
                     children: sideDrawerModel
@@ -40,7 +42,7 @@ class SideDrawer extends StatelessWidget {
                                   (e) => InkWell(
                                     child: ListTile(title: Text(e.name)),
                                     onTap: () {
-                                      diContainer<DrawerBloc>().add(DrawerEvent.filterData(sideDrawerModel.title, e.name));
+                                      diContainer<HomeBloc>().add(HomeEvent.filterData(sideDrawerModel.title, e.code ?? e.name));
                                     },
                                   ),
                                 )
@@ -51,6 +53,7 @@ class SideDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              // ),
             );
           },
         ),

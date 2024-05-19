@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchAllNews>(_fetchAllNews);
     on<Paginate>(_pagination);
     on<Like>(_onLike);
-    on<FilterAllNews>(_filterNews);
+    on<FilterData>(_filterData);
   }
 
   NewsRequest _newsRequest = const NewsRequest(
@@ -71,19 +71,48 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit((state as _AllNews).copyWith(articles: articles, isLast: false));
   }
 
-  _filterNews(FilterAllNews event, Emitter<HomeState> emit) async {
-    if ((state as _AllNews).isLoading) return;
+  _filterNews(Map<String, String> event, Emitter<HomeState> emit) async {
+    // Check if the current state is _AllNews and is loading, then return early
+    if (state is _AllNews && (state as _AllNews).isLoading) return;
+
+    // Emit the initial loading state
     emit(const HomeState.initialState(isLoading: true));
+
     try {
-      _newsRequest = _newsRequest.copyWith(page: 1, category: event.category, country: event.country, sources: event.sources);
+      // Copy the news request with new parameters from the event
+      _newsRequest = _newsRequest.copyWith(page: 1, category: event['category']!, country: event['country']!, sources: event['sources']!);
+
+      // Await the asynchronous API call to get the news
       NewsResponse newsResponse = await _apiProvider.getNews(_newsRequest.toJson());
+
+      // Update the news request to the next page
       _newsRequest = _newsRequest.copyWith(page: _newsRequest.page + 1);
+
+      // Print the number of articles for debugging purposes
       debugPrint(newsResponse.articles.length.toString());
+
+      // Check if there are any articles in the response
       if (newsResponse.articles.isNotEmpty) {
+        // Emit the new state with the articles and loading set to false
         emit(HomeState.allNewsState(articles: newsResponse.articles, isLoading: false));
       }
     } catch (e) {
+      // Log the error and emit the error state with the error message
       emit(HomeState.errorState(errorMessage: e.toString()));
+    }
+  }
+
+  _filterData(FilterData event, Emitter<HomeState> emit) async {
+    switch (event.category) {
+      case 'country':
+        await _filterNews({"country": event.value, "category": '', "sources": ''}, emit);
+        break;
+      case 'Category':
+        await _filterNews({"country": '', "category": event.value, "sources": ''}, emit);
+        break;
+      case 'Channel':
+        await _filterNews({"country": '', "category": '', "sources": event.value}, emit);
+        break;
     }
   }
 }

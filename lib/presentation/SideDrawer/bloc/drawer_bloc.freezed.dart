@@ -19,38 +19,32 @@ mixin _$DrawerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String category, String value) filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String category, String value)? filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String category, String value)? filterData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(FilterData value) filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
-    TResult? Function(FilterData value)? filterData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(FilterData value)? filterData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +107,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String category, String value) filterData,
   }) {
     return started();
   }
@@ -122,7 +115,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(String category, String value)? filterData,
   }) {
     return started?.call();
   }
@@ -131,7 +123,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String category, String value)? filterData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +135,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
-    required TResult Function(FilterData value) filterData,
   }) {
     return started(this);
   }
@@ -153,7 +143,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
-    TResult? Function(FilterData value)? filterData,
   }) {
     return started?.call(this);
   }
@@ -162,7 +151,6 @@ class _$StartedImpl implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
-    TResult Function(FilterData value)? filterData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -174,150 +162,6 @@ class _$StartedImpl implements Started {
 
 abstract class Started implements DrawerEvent {
   const factory Started() = _$StartedImpl;
-}
-
-/// @nodoc
-abstract class _$$FilterDataImplCopyWith<$Res> {
-  factory _$$FilterDataImplCopyWith(
-          _$FilterDataImpl value, $Res Function(_$FilterDataImpl) then) =
-      __$$FilterDataImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String category, String value});
-}
-
-/// @nodoc
-class __$$FilterDataImplCopyWithImpl<$Res>
-    extends _$DrawerEventCopyWithImpl<$Res, _$FilterDataImpl>
-    implements _$$FilterDataImplCopyWith<$Res> {
-  __$$FilterDataImplCopyWithImpl(
-      _$FilterDataImpl _value, $Res Function(_$FilterDataImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? category = null,
-    Object? value = null,
-  }) {
-    return _then(_$FilterDataImpl(
-      null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$FilterDataImpl implements FilterData {
-  const _$FilterDataImpl(this.category, this.value);
-
-  @override
-  final String category;
-  @override
-  final String value;
-
-  @override
-  String toString() {
-    return 'DrawerEvent.filterData(category: $category, value: $value)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FilterDataImpl &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, category, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FilterDataImplCopyWith<_$FilterDataImpl> get copyWith =>
-      __$$FilterDataImplCopyWithImpl<_$FilterDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String category, String value) filterData,
-  }) {
-    return filterData(category, value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(String category, String value)? filterData,
-  }) {
-    return filterData?.call(category, value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String category, String value)? filterData,
-    required TResult orElse(),
-  }) {
-    if (filterData != null) {
-      return filterData(category, value);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(FilterData value) filterData,
-  }) {
-    return filterData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Started value)? started,
-    TResult? Function(FilterData value)? filterData,
-  }) {
-    return filterData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(FilterData value)? filterData,
-    required TResult orElse(),
-  }) {
-    if (filterData != null) {
-      return filterData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FilterData implements DrawerEvent {
-  const factory FilterData(final String category, final String value) =
-      _$FilterDataImpl;
-
-  String get category;
-  String get value;
-  @JsonKey(ignore: true)
-  _$$FilterDataImplCopyWith<_$FilterDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

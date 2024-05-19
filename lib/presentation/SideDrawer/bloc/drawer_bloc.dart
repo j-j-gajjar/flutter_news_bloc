@@ -16,7 +16,6 @@ part 'drawer_bloc.freezed.dart';
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
   DrawerBloc() : super(const _Initial()) {
     on<Started>(_startedEvent);
-    on<FilterData>(_filterData);
   }
 
   FutureOr<void> _startedEvent(Started event, Emitter<DrawerState> emit) async {
@@ -29,19 +28,19 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     emit(_Loaded(sideDrawer: data));
   }
 
-  _filterData(FilterData event, Emitter<DrawerState> emit) {
-    if (state is _Loaded) {
-      switch (event.category) {
-        case 'Countries':
-          emit((state as _Loaded).copyWith(country: event.value, category: '', sources: ''));
-          break;
-        case 'Language':
-          emit((state as _Loaded).copyWith(country: '', category: event.value, sources: ''));
-          break;
-        case 'Channel':
-          emit((state as _Loaded).copyWith(country: '', category: '', sources: event.value));
-          break;
-      }
-    }
-  }
+  // _filterData(FilterData event, Emitter<DrawerState> emit) {
+  //   if (state is _Loaded) {
+  //     switch (event.category) {
+  //       case 'Countries':
+  //         emit((state as _Loaded).copyWith(country: event.value, category: '', sources: ''));
+  //         break;
+  //       case 'Language':
+  //         emit((state as _Loaded).copyWith(country: '', category: event.value, sources: ''));
+  //         break;
+  //       case 'Channel':
+  //         emit((state as _Loaded).copyWith(country: '', category: '', sources: event.value));
+  //         break;
+  //     }
+  //   }
+  // }
 }
